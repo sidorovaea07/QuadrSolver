@@ -1,17 +1,31 @@
+/*!
+    \file 
+    \brief Input and Output module
+*/
+
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
 #include "InputOutput.h"
 #include "Solver.h"
 
-int Input(struct cfc *s){
-    while (scanf("%lf %lf %lf", &s->a, &s->b, &s->c) != 3) {
-        while (getchar() != '\n');
-        printf("\033[30mLet's try one more time.\033[0m\n");
-    }
+int CleanBuffer() 
+{
+    while (getchar() != '\n'){}
+    return 0;
 }
 
-int Output(struct cfc *s){
+int Input(struct SolverData *s)
+{
+    while (scanf("%lf %lf %lf", &s->a, &s->b, &s->c) != 3) {
+        CleanBuffer();
+        printf("\033[30mLet's try one more time.\033[0m\n");
+    }
+    return 0;
+}
+
+int Output(struct SolverData *s)
+{
     assert(s->n!=NANRoots);
     switch (s->n) {
 
@@ -31,4 +45,5 @@ int Output(struct cfc *s){
             printf("An error.\n");
             break;
     }
+    return 0;
 }

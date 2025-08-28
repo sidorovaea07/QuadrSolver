@@ -1,8 +1,24 @@
+/*!
+    \file
+    \brief Header for Input and Output
+*/
+
 #ifndef InputOutput_h
 #define InputOutput_h
 
-int Input(struct cfc *s);
+//----------------------------------------------------------
+//! Cleans Buffer
+//----------------------------------------------------------
+int CleanBuffer();
 
-int Output(struct cfc *s);
+//----------------------------------------------------------
+//! Requests the coefficients and verifies the input
+//----------------------------------------------------------
+int Input(struct SolverData *s);
+
+//----------------------------------------------------------
+//! Outputs the number of roots and the roots if any
+//----------------------------------------------------------
+int Output(struct SolverData *s);
 
 #endif

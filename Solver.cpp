@@ -1,3 +1,8 @@
+/*!
+    \file 
+    \brief Solver module
+*/
+
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
@@ -7,7 +12,8 @@
 int CompareDoubles (double a, double b) {
     if (isnan(a) && isnan(b))
         return 0;
-    else {
+    else 
+    {
         if (fabs(a - b) < DBL_MIN)
             return 0;
         else
@@ -16,13 +22,15 @@ int CompareDoubles (double a, double b) {
 
 }
 
-int IsNull (double *x) {
+int IsNull (double *x) 
+{
     if (!CompareDoubles(*x,0))
         *x = 0;
     return 0;
 }
 
-int SquareSolv (struct cfc *s) {
+int SquareSolv (struct SolverData *s) 
+{
     assert(!isnan(s->a));
     assert(!isnan(s->b));
     assert(!isnan(s->c));
@@ -45,16 +53,18 @@ int SquareSolv (struct cfc *s) {
             s->n = OneRoot;
         }
     }
-    else {
-
-        if (d > 0) {
+    else 
+    {
+        if (d > 0) 
+        {
             s->x1 = (-s->b + sqrt(d)) / 2 / s->a;
             IsNull(&s->x1);
             s->x2 = (-s->b - sqrt(d)) / 2 / s->a;
             IsNull(&s->x2);
             s->n = TwoRoots;
         }
-        else if (!CompareDoubles(d,0)) {
+        else if (!CompareDoubles(d,0)) 
+        {
             s->x1 = s->x2 = -s->b / 2 / s->a;
             IsNull(&s->x1);
             IsNull(&s->x2);
